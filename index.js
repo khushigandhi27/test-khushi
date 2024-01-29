@@ -5,12 +5,11 @@ const express = require('express');
 const helmet = require('helmet');
 const httpStatus = require('http-status');
 
-//const { GENERAL_ERROR } = require('./src/constants/error-constants');
+const { GENERAL_ERROR } = require('./src/constants/error-constants');
 
 const dreamRoute = require('./src/routes/index');
-const ApiError = require('./utils/ApiError');
-const { errorConverter,errorHandler } = require('./utils/error-handler');
-const { initializeFirebaseApp } = require('./src/controllers/lib/firebase');
+const ApiError = require('./src/utils/ApiError');
+const { errorConverter, errorHandler } = require('./src/utils/error-handler');
 
 const app = express();
 const PORT = 5500;
@@ -26,14 +25,10 @@ app.use(cors());
 
 app.use(express.json());
 
-app.get('/initialize-firebase', (req, res) => {
-  initializeFirebaseApp(req, res);
-});
-
 // to handle URL-encoded form data sent in POST requests
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/v1/dream', dreamRoute);
+app.use('/f1/firebase-practice', dreamRoute);
 
 // send back a 404 error for any unknown api request
 app.use((_, __, next) => {

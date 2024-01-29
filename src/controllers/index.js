@@ -1,5 +1,9 @@
-const {uploadProcessedData}=require('../controllers/lib/firebase');
+const addBookController = require('./books/add-books');
+const updateBookController = require('./books/update-books');
+const deleteBookController = require('./books/delete-books');
 
 module.exports = {
-  uploadProcessedData,
+  addBookController,
+  updateBookController,
+  deleteBookController,
 };
